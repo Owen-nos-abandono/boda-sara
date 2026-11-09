@@ -1,19 +1,112 @@
+
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Panel privado | Sara & Alejandro</title><link rel="stylesheet" href="/assets/admin.css"></head>
-<body class="admin-body"><main class="dashboard">
-<header class="dash-header"><div><p class="eyebrow">Sara & Alejandro · 13 marzo 2027</p><h1>Panel de confirmaciones</h1><p class="muted">Administración privada de invitados</p></div>
-<button id="logout" class="btn-outline">Cerrar sesión</button></header>
-<section class="stats">
-<article class="stat"><span>Respuestas recibidas</span><strong id="responses">—</strong></article>
-<article class="stat"><span>Asistirán</span><strong id="attending">—</strong></article>
-<article class="stat"><span>No asistirán</span><strong id="declining">—</strong></article>
-<article class="stat"><span>Total de personas</span><strong id="people">—</strong></article>
-</section>
-<section class="table-card">
-<div class="table-heading"><div><h2>Lista de invitados</h2><p class="muted">Respuestas guardadas en tu base de datos.</p></div>
-<div class="tools"><input id="search" type="search" placeholder="Buscar invitado..."><a class="btn-primary" href="/api/admin/export.csv">Exportar CSV</a></div></div>
-<div class="table-wrap"><table><thead><tr><th>Nombre</th><th>Asistencia</th><th>Personas</th><th>Mensaje</th><th>Fecha</th><th></th></tr></thead><tbody id="rows"><tr><td colspan="6">Cargando...</td></tr></tbody></table></div>
-<p id="empty" class="muted"></p>
-</section><p id="notice" class="notice" role="status"></p></main>
-<script src="/assets/admin.js"></script></body></html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Panel privado | Sara & Alejandro</title>
+
+  <!-- Estilos del panel -->
+  <link rel="stylesheet" href="/admin.css">
+</head>
+
+<body class="admin-body">
+
+  <main class="dashboard">
+
+    <header class="dash-header">
+      <div>
+        <p class="eyebrow">Sara & Alejandro · 13 marzo 2027</p>
+        <h1>Panel de confirmaciones</h1>
+        <p class="muted">Administración privada de invitados</p>
+      </div>
+
+      <button id="logout" class="btn-outline">
+        Cerrar sesión
+      </button>
+    </header>
+
+    <section class="stats">
+
+      <article class="stat">
+        <span>Respuestas recibidas</span>
+        <strong id="responses">—</strong>
+      </article>
+
+      <article class="stat">
+        <span>Asistirán</span>
+        <strong id="attending">—</strong>
+      </article>
+
+      <article class="stat">
+        <span>No asistirán</span>
+        <strong id="declining">—</strong>
+      </article>
+
+      <article class="stat">
+        <span>Total de personas</span>
+        <strong id="people">—</strong>
+      </article>
+
+    </section>
+
+    <section class="table-card">
+
+      <div class="table-heading">
+
+        <div>
+          <h2>Lista de invitados</h2>
+          <p class="muted">
+            Respuestas guardadas en tu base de datos.
+          </p>
+        </div>
+
+        <div class="tools">
+          <input
+            id="search"
+            type="search"
+            placeholder="Buscar invitado..."
+          >
+
+          <a class="btn-primary" href="/api/admin/export.csv">
+            Exportar CSV
+          </a>
+        </div>
+
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Asistencia</th>
+              <th>Personas</th>
+              <th>Mensaje</th>
+              <th>Fecha</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody id="rows">
+            <tr>
+              <td colspan="6">Cargando...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p id="empty" class="muted"></p>
+
+    </section>
+
+    <p id="notice" class="notice" role="status"></p>
+
+  </main>
+
+  <!-- JavaScript del panel -->
+  <script src="/admin.js" defer></script>
+
+</body>
+</html>
