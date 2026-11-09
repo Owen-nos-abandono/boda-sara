@@ -1,23 +1,103 @@
+
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Acceso privado</title><link rel="stylesheet" href="/assets/admin.css"></head>
-<body class="admin-body"><main class="login-card">
-<div class="login-mark">S <span>&</span> A</div><p class="eyebrow">Sara & Alejandro · Administración</p>
-<h1>Acceso privado</h1><p class="muted">Ingresa tus credenciales para continuar.</p>
-<form id="login-form">
-<label for="username">Usuario</label><input id="username" autocomplete="username" required>
-<label for="password">Contraseña</label><input id="password" type="password" autocomplete="current-password" required>
-<button type="submit" id="login-button">Iniciar sesión</button><p id="login-error" class="error" role="alert"></p>
-</form></main>
-<script>
-const form=document.getElementById('login-form');
-form.addEventListener('submit',async e=>{
- e.preventDefault(); const b=document.getElementById('login-button'), err=document.getElementById('login-error');
- b.disabled=true;b.textContent='Verificando...';err.textContent='';
- try{
-  const r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:document.getElementById('username').value,password:document.getElementById('password').value})});
-  const d=await r.json();if(!r.ok)throw new Error(d.detail||'No fue posible iniciar sesión.');
-  location.replace('/admin');
- }catch(x){err.textContent=x.message;b.disabled=false;b.textContent='Iniciar sesión';}
-});
-</script></body></html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Acceso privado | Sara & Alejandro</title>
+
+  <!-- Estilos del panel de administración -->
+  <link rel="stylesheet" href="/admin.css">
+</head>
+
+<body class="admin-body">
+
+  <main class="login-card">
+
+    <div class="login-mark">S <span>&</span> A</div>
+
+    <p class="eyebrow">Sara & Alejandro · Administración</p>
+
+    <h1>Acceso privado</h1>
+
+    <p class="muted">
+      Ingresa tus credenciales para continuar.
+    </p>
+
+    <form id="login-form">
+
+      <label for="username">Usuario</label>
+      <input
+        id="username"
+        name="username"
+        type="text"
+        autocomplete="username"
+        required
+      >
+
+      <label for="password">Contraseña</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        autocomplete="current-password"
+        required
+      >
+
+      <button type="submit" id="login-button">
+        Iniciar sesión
+      </button>
+
+      <p id="login-error" class="error" role="alert"></p>
+
+    </form>
+
+  </main>
+
+  <script>
+    const form = document.getElementById('login-form');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const button = document.getElementById('login-button');
+      const error = document.getElementById('login-error');
+
+      button.disabled = true;
+      button.textContent = 'Verificando...';
+      error.textContent = '';
+
+      try {
+        const response = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.detail || 'No fue posible iniciar sesión.'
+          );
+        }
+
+        location.replace('/admin');
+
+      } catch (err) {
+        error.textContent = err.message;
+
+        button.disabled = false;
+        button.textContent = 'Iniciar sesión';
+      }
+    });
+  </script>
+
+</body>
+</html>
